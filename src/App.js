@@ -1,20 +1,21 @@
-import React, { Component } from "react";
-import "./App.css";
-import Web3 from "web3";
-import { Eth } from "web3-eth";
-
-const web3 = new Web3(Web3.givenProvider || "ws://localhost:8546", null, {});
-const eth = new Eth(Web3.givenProvider || "ws://localhost:8546", null, {});
-web3.eth.getAccounts().then((result) => {
-  // console.log(result[0]);
-  console.log(web3.eth.getBalance(result[0]));
-});
+import React, { Component } from 'react';
+import Navbar from './components/Navbar';
+import { Route } from 'react-router-dom';
+import Questions from './components/Questions';
+import Question from './components/Question';
+import Callback from './actions/Callback';
+import NewQuestion from './NewQuestion/NewQuestion';
+import SecuredRoute from './SecuredRoute/SecuredRoute';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Hello World</h1>
+      <div>
+        <Navbar />
+        <Route exact path='/' component={Questions} />
+        <Route exact path='/question/:questionId' component={Question} />
+        <Route exact path='/callback' component={Callback} />
+        <SecuredRoute path='/new-question' component={NewQuestion} />
       </div>
     );
   }
