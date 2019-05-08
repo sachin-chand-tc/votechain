@@ -5,6 +5,11 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const mysql = require('mysql');
 const Web3 = require('web3');
+// const fs = require('fs');
+// const Prompt = require('prompt');
+// const Wallet = require('ethereumjs-wallet');
+// const colors = require('colors/safe');
+const solc = require('solc');
 
 const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545');
 web3.eth.getAccounts(console.log);
@@ -84,148 +89,6 @@ app.post('/new', (req, res) => {
     res.status(200).send(answer);
   });
 });
-
-
-web3.eth.personal.unlockAccount("0x37ccfcd81de97d0a77cdd8f7cf59a770833a0512", "", 600)
-     .then(console.log('Account unlocked!'));
-    // new web3.eth.Contract(jsonInterface, address, options)
-     const myContract = new web3.eth.Contract([
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "name": "party",
-            "type": "string"
-          }
-        ],
-        "name": "addCandidate",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "uid",
-            "type": "string"
-          },
-          {
-            "name": "candidateID",
-            "type": "uint256"
-          },
-          {
-            "name": "aadhar",
-            "type": "uint256"
-          }
-        ],
-        "name": "vote",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "candidateID",
-            "type": "uint256"
-          }
-        ],
-        "name": "AddedCandidate",
-        "type": "event"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "candidateID",
-            "type": "uint256"
-          }
-        ],
-        "name": "getCandidate",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          },
-          {
-            "name": "",
-            "type": "string"
-          },
-          {
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "getNumOfCandidates",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "getNumOfVoters",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "candidateID",
-            "type": "uint256"
-          }
-        ],
-        "name": "totalVotes",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      }
-    ], '0x9acf60914271e3a81e3cf722e7c926039e56b36e', {
-      defaultAccount: '0x37ccfcd81de97d0a77cdd8f7cf59a770833a0512', // default from address
-      defaultGasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
-  });
-
-
-  myContract.methods.addCandidate(123).send({from: '0x9acf60914271e3a81e3cf722e7c926039e56b36e'})
-  .then((receipt) => {
-    // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
-  });
 
 
 app.listen(8081, () => {
