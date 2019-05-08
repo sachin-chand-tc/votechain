@@ -6,7 +6,7 @@ class NavBar extends Component {
     render() {
         return (
             <div>
-                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: "#129186" }}>
                     <Navbar.Brand href="http://localhost:3000/">
                         <img
                             alt=''

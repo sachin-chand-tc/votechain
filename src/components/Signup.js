@@ -10,7 +10,7 @@ class Signup extends Component {
             username: '',
             password: '',
             enrollment: '',
-            public_key: '',
+            // public_key: '',
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -29,19 +29,20 @@ class Signup extends Component {
             password: value
         })
     }
-    handleKeyChange(value) {
-        this.setState({
-            public_key: value
-        })
-    }
+    // handleKeyChange(value) {
+    //     this.setState({
+    //         public_key: value
+    //     })
+    // }
     handleSubmit() {
         let user = {
             username: this.state.username,
             password: this.state.password,
             enrollment: this.state.enrollment,
-            public_key: this.state.public_key
+            // public_key: this.state.public_key
         }
-        if (user.username !== '' && user.password !== '' && user.enrollment !== '' && user.public_key !== '')
+        alert(user);
+        if (user.username !== '' && user.password !== '' && user.enrollment !== '')
             axios.post('http://localhost:8081/signup', user)
                 .then(res => {
                     if (res.data === true) alert("Sucess");
@@ -80,7 +81,7 @@ class Signup extends Component {
                                                     type="password" placeholder="Password" />
                                             </Col>
                                         </Form.Group>
-                                        <Form.Group as={Row} controlId="formHorizontalPassword">
+                                        {/* <Form.Group as={Row} controlId="formHorizontalPassword">
                                             <Form.Label column sm={2}>
                                                 Account Address
                             </Form.Label>
@@ -89,7 +90,7 @@ class Signup extends Component {
                                                     onBlur={(e) => { this.handleKeyChange(e.target.value) }}
                                                     type="text" placeholder="Public Key" />
                                             </Col>
-                                        </Form.Group>
+                                        </Form.Group> */}
                                         <Form.Group as={Row} controlId="formHorizontalEnroll">
                                             <Form.Label column sm={2}>
                                                 Enrollment Number

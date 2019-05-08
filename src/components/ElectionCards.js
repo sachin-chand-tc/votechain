@@ -5,10 +5,22 @@ import { Container, Col, Row } from 'react-bootstrap'
 class ElectionCards extends Component {
     state = {
         elections: [
-            { electionId: 1, electionName: "Sachin Chand" },
-            { electionid: 2, electionName: "Sunil Chand" },
-            { electionid: 3, electionName: "Saasdhin Chand" },
-            { electionid: 4, electionName: "Saffhin Chand" },
+            {
+                electionId: 1, electionName: "Election 1",
+                electionDetails: "Election for new Vice President of Art Club of our College."
+            },
+            {
+                electionid: 2, electionName: "Election 2",
+                electionDetails: "Election for new Mess incharge of Aryabhatta Hostel Mess."
+            },
+            {
+                electionid: 3, electionName: "Election 3",
+                electionDetails: "Vice President of Students' Union."
+            },
+            {
+                electionid: 4, electionName: "Election 4",
+                electionDetails: "Election for new Head of Department of CSE."
+            }
         ]
     }
     render() {
@@ -19,12 +31,13 @@ class ElectionCards extends Component {
                         {this.state.elections.map(election => (
                             <Col style={{ marginTop: '20px' }} >
                                 <ElectionCard
-                            key={election.Id}
-                            electionId={election.electionId}
-                            electionName={election.electionName}
-                        />
+                                    key={election.Id}
+                                    Id={election.electionId}
+                                    electionName={election.electionName}
+                                    electionDetails={election.electionDetails}
+                                />
                             </Col>
-                    ))}
+                        ))}
 
                     </Row>
                 </Container>

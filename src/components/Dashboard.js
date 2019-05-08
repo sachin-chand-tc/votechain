@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
-// import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import ElectionCards from './ElectionCards';
 import DashboardNav from './DashboardNav';
 
 class Dashboard extends Component {
     render() {
         return (
-            <React.Fragment>
-                <ElectionCards />
-                <DashboardNav />
-            </React.Fragment>
+            <Container>
+                <Row>
+                    <Col md="2">
+                        <DashboardNav />
+                    </Col>
+                    <Col>
+                        <ElectionCards />
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
