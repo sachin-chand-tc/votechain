@@ -26,7 +26,10 @@
     "web3": "^1.0.0-beta.52"
   },
   "scripts": {
-    "start": "react-scripts start",
+    // "start": "react-scripts start",
+    "start-watch": "react-scripts start",
+    "wp-server": "node ./backend/src",
+    "start": "concurrently --kill-others \"npm run start-watch\" \"npm run wp-server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

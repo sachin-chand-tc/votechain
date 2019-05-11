@@ -4,16 +4,16 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const mysql = require('mysql');
-const Web3 = require('web3');
+// const Web3 = require('web3');
 // const fs = require('fs');
 // const Prompt = require('prompt');
 // const Wallet = require('ethereumjs-wallet');
 // const colors = require('colors/safe');
-const solc = require('solc');
+// const solc = require('solc');
 
-const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545');
-web3.eth.getAccounts(console.log);
-
+// const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545');
+// web3.eth.getAccounts(console.log);
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -58,20 +58,21 @@ app.post('/signup', (req, res) => {
   let username = req.body.username;
   username = username.toLowerCase();
   let password = req.body.password;
-  let public_key = "";
+  let public_key = "asf";
   let answer = false;
-  web3.eth.personal.newAccount(password).then((result) => {
-    public_key = result;
-    bcrypt.hash(password, saltRounds).then(function (hash) {
-      password = hash;
-      var qry = `INSERT INTO user (username,password,public_key) values ("${username}","${password}","${public_key}");`;
-      con.query(qry, function (err, result) {
-        if (err) throw err;
-        else answer = true;
-        res.status(200).send(answer);
-      });
+  bcrypt.hash(password, saltRounds).then(function (hash) {
+    password = hash;
+    var qry = `INSERT INTO user (username,password,public_key) values ("${username}","${password}","${public_key}");`;
+    con.query(qry, function (err, result) {
+      if (err) throw err;
+      else answer = true;
+      res.status(200).send(answer);
     });
   });
+  // web3.eth.personal.newAccount(password).then((result) => {
+  //   public_key = result;
+
+  // });
 });
 
 app.post('/new', (req, res) => {
@@ -91,6 +92,6 @@ app.post('/new', (req, res) => {
 });
 
 
-app.listen(8081, () => {
-  console.log('listening on port 8081');
+app.listen(port, () => {
+  console.log('listening on port ' + port);
 });
